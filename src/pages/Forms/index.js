@@ -33,13 +33,13 @@ const Forms = () => {
     setRespostas(
       Object.assign(respostas, resposta)
     )
-    console.log(respostas)
+    console.log(state.numeroForm)
   }
 
   return (
     <Box flex={1} alignItems='center' justifyContent='center' marginTop='10%'>
       {state.numeroForm === 0 && <InformacoesCandidato juntarRespostas={juntarRespostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 1 && <PrimeiraQuestao juntarRespostas={juntarRespostas} dispatch={dispatch} repostas={respostas} />}
+      {state.numeroForm === 1 && <PrimeiraQuestao juntarRespostas={juntarRespostas} dispatch={dispatch} respostas={respostas} />}
     </Box>
   )
 }

@@ -1,12 +1,25 @@
+import { useEffect, useState } from 'react'
 import { Box, Input, FormControl, Radio, TextArea, Heading, Text, ScrollView, Button, WarningOutlineIcon, VStack, HStack } from 'native-base'
 import { useForm, Controller } from "react-hook-form"
 
-const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
+const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
+    getValues
   } = useForm()
+
+  const [selectInformacoesComunidade, setSelectInformacoesComunidade] = useState('não')
+  const [selectProgramaSocial, setSelectProgramaSocial] = useState('não')
+
+  useEffect(() => {
+    if (respostas.questao1) {
+      const campos = Object.keys(respostas.questao1)
+      campos.forEach((campo) => setValue(campo, respostas.questao1[campo]))
+    }
+  }, [])
 
   const onSubmit = (data) => {
     juntarRespostas({
@@ -45,6 +58,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <Input
                   onChangeText={onChange}
                   variant="filled"
+                  value={value}
                 />
               )}
             />
@@ -67,6 +81,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <Input
                   onChangeText={onChange}
                   variant="filled"
+                  value={value}
                 />
               )}
             />
@@ -89,6 +104,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <Input
                   onChangeText={onChange}
                   variant="filled"
+                  value={value}
                 />
               )}
             />
@@ -97,8 +113,9 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
             </FormControl.ErrorMessage>
           </FormControl>
           
-          <Controller
-              name='informacoesComunidade'
+          <VStack space={4}>
+            <Controller
+              name='selectInformacoesComunidade'
               control={control}
               rules={{
                 required: false
@@ -109,25 +126,49 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                     Mora (ou morou) em uma comunidade tradicional? Qual?
                   </FormControl.Label>
                   <Radio.Group
-                    onChange={onChange}
+                    onChange={(value) => {
+                      onChange(value)
+                      setSelectInformacoesComunidade(value)
+                    }}
+                    value={value || ''}
                   >
                     <Radio value="sim" my={1}>
                       Sim
                     </Radio>
-                    
-                    <Radio value="não" my={1}>
+          
+                    <Radio value="não" my={1} onPress={() => {
+                      setValue('informacoesComunidade', '')
+                    }}>
                       Não
                     </Radio>
                   </Radio.Group>
-                  <Input
-                    placeholder='Informações sobre a comunidade'
-                    variant="filled"
-                    isDisabled={value === 'não' || value === undefined ? true : false}
-                    onChangeText={onChange}
-                  />
                 </Box>
               )}
             />
+            
+            <FormControl isInvalid={errors.informacoesComunidade}>
+              <Controller
+                name='informacoesComunidade'
+                control={control}
+                rules={{
+                  required: false
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    placeholder='Qual comunidade tradicional?'
+                    onChangeText={onChange}
+                    variant="filled"
+                    value={value}
+                    isDisabled={selectInformacoesComunidade === 'não' ? true : false}
+                    isReadOnly={selectInformacoesComunidade === 'não' ? true : false}
+                  />
+                )}
+              />
+              <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                Campo obrigatório
+              </FormControl.ErrorMessage>
+            </FormControl>
+          </VStack>
           
           <FormControl isInvalid={errors.caracterizacaoComunidade}>
             <FormControl.Label>
@@ -143,6 +184,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <TextArea
                   placeholder='Informações sobre a comunidade'
                   variant="filled"
+                  value={value}
                   onChangeText={onChange}
                 />
               )}
@@ -169,6 +211,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                   keyboardType="numeric"
                   maxLength={3}
                   onChangeText={onChange}
+                  value={value}
                 />
               )}
             />
@@ -186,9 +229,12 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
           </Text>
         </Box>
 
+
         <VStack space={6} marginBottom={8}>
-          <Controller
-              name='informacoesProgramaSocial'
+
+          <VStack space={4}>
+            <Controller
+              name='selectProgramaSocial'
               control={control}
               rules={{
                 required: false
@@ -196,27 +242,54 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Box>
                   <FormControl.Label>
-                    Você ou sua família estão cadastrados em algum programa social do governo federal? Caso sim, qual?
+                    Mora (ou morou) em uma comunidade tradicional? Qual?
                   </FormControl.Label>
                   <Radio.Group
-                    onChange={onChange}
+                    onChange={(value) => {
+                      onChange(value)
+                      setSelectProgramaSocial(value)
+                    }}
+                    value={value || ''}
                   >
                     <Radio value="sim" my={1}>
                       Sim
                     </Radio>
-                    <Radio value="não" my={1}>
+          
+                    <Radio value="não" my={1} onPress={() => {
+                      setValue('informacoesProgramaSocial', '')
+                    }}>
                       Não
                     </Radio>
                   </Radio.Group>
-                  <Input
-                    placeholder='Informa o programa social'
-                    variant="filled"
-                    isDisabled={value === 'não' || value === undefined ? true : false}
-                    onChangeText={onChange}
-                  />
                 </Box>
               )}
             />
+              
+            <FormControl isInvalid={errors.informacoesProgramaSocial}>
+              <Controller
+                name='informacoesProgramaSocial'
+                control={control}
+                rules={{
+                  required: false
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    placeholder='Qual programa social?'
+                    onChangeText={onChange}
+                    variant="filled"
+                    value={value}
+                    isDisabled={selectProgramaSocial === 'não' ? true : false}
+                    isReadOnly={selectProgramaSocial === 'não' ? true : false}
+                  />
+                )}
+              />
+              <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                Campo obrigatório
+              </FormControl.ErrorMessage>
+            </FormControl>
+          </VStack>
+          
+
           <FormControl isInvalid={errors.disponibilidadeDeTempo}>
             <FormControl.Label>
               Qual a sua disponibilidade de tempo para fazer o curso pretendido?
@@ -231,6 +304,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <Input
                   onChangeText={onChange}
                   variant="filled"
+                  value={value}
                 />
               )}
             />
@@ -253,6 +327,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                 <Input
                   onChangeText={onChange}
                   variant="filled"
+                  value={value}
                 />
               )}
             />
@@ -278,6 +353,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
                   keyboardType="numeric"
                   maxLength={3}
                   onChangeText={onChange}
+                  value={value}
                 />
               )}
             />
@@ -288,9 +364,9 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch }) => {
         </VStack>
 
 
-        <HStack justifyContent='center' space={8}>
+        <HStack justifyContent='space-between' paddingX={10}>
           <Button
-            variant='outline'
+            variant='ghost'
             colorScheme='secondary'
             marginBottom='10%'
             _text={{

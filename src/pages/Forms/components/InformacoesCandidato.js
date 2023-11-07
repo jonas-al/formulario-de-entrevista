@@ -1,4 +1,5 @@
-import { Box, Input, FormControl, Radio, TextArea, Heading, Text, View, Button, WarningOutlineIcon, VStack } from 'native-base'
+import { useEffect } from 'react'
+import { Box, Input, FormControl, Radio, Heading, ScrollView, Button, WarningOutlineIcon, VStack } from 'native-base'
 import { useForm, Controller } from "react-hook-form"
 
 import { saveItem } from '../../../hooks/useStorage'
@@ -8,7 +9,15 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
+    getValues
   } = useForm()
+
+  useEffect(() => {
+    const campos = ['nomeCandidato', 'inscricaoCandidato', 'localidadeEntrevista', 'selecaoCandidato']
+    campos.forEach((campo) => setValue(campo, respostas[campo]))
+    console.log(getValues(), 123)
+  }, [])
 
 
   const onSubmit = async (data) => {
@@ -17,7 +26,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
   }
 
   return (
-    <View w='95%'>
+    <ScrollView w='95%'>
       <VStack space={6} marginBottom={8}>
 
       <Box>
@@ -40,8 +49,8 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
               <Input
                 onChangeText={onChange}
                 variant="filled"
-                defaultValue={respostas.nomeCandidato}
-                value={respostas.nomeCandidato}
+                placeholder='Nome do canditado(a)'
+                value={value}
               />
             )}
           />
@@ -65,7 +74,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
                 onChangeText={onChange}
                 variant="filled"
                 placeholder='Nº de Inscrição'
-                defaultValue={respostas.inscricaoCandidato}
+                value={value}
               />
             )}
           />
@@ -89,7 +98,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
                 onChangeText={onChange}
                 variant="filled"
                 placeholder='Local da entrevista'
-                defaultValue={respostas.localidadeEntrevista}
+                value={value}
               />
             )}
           />
@@ -111,7 +120,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Radio.Group
                 onChange={onChange}
-                defaultValue={respostas.selecaoCandidato}
+                value={value || ''}
               >
                 <Radio value="indigina" my={1}>
                   Indigína
@@ -140,7 +149,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
         >
           Continuar
       </Button>
-    </View>
+    </ScrollView>
   )
 }
 
