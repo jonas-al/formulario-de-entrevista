@@ -12,6 +12,8 @@ import TelaConfirmacao from './components/TelaConfirmacao'
 import useStorage from '../../hooks/useStorage'
 
 const reducer = (state, action) => {
+    if (state.numeroForm > 5) return
+
     if (action.type === 'proxima') {
       return {
         numeroForm: state.numeroForm + 1
