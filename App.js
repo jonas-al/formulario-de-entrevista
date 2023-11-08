@@ -1,10 +1,13 @@
 import { NativeBaseProvider } from "native-base";
-import Forms from "./src/pages/Forms";
+import { NavigationContainer } from "@react-navigation/native";
+import { Routes } from "./src/routes";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Forms />
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }

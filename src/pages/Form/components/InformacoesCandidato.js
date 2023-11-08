@@ -16,7 +16,6 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
   useEffect(() => {
     const campos = ['nomeCandidato', 'inscricaoCandidato', 'localidadeEntrevista', 'selecaoCandidato']
     campos.forEach((campo) => setValue(campo, respostas[campo]))
-    console.log(getValues(), 123)
   }, [])
 
 

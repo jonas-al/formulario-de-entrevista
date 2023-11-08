@@ -8,7 +8,6 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues
   } = useForm()
 
   const [selectInformacoesComunidade, setSelectInformacoesComunidade] = useState('não')
