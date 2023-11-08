@@ -3,8 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const useStorage = () => {
   const getItem = async (key) => {
     try {
-      const entrevistas = await AsyncStorage.getItem(key)
-      return JSON.parse(entrevistas) || []
+      const formularios = await AsyncStorage.getItem(key)
+
+      return JSON.parse(formularios) || []
     } catch (error) {
       console.log('ERRO AO BUSCAR ITEM ', error)
     }
@@ -12,10 +13,10 @@ const useStorage = () => {
 
   const saveItem = async (key, value) => {
     try {
-      const entrevistas = await getItem(key)
-      entrevistas.push(value)
+      const formularios = await getItem(key)
+      formularios.push(value)
       
-      await AsyncStorage.setItem(key, JSON.stringify(entrevistas))
+      await AsyncStorage.setItem(key, JSON.stringify(formularios))
     } catch (error) {
       console.log('ERRO AO SALVAR ITEM ', error)
     }
@@ -23,26 +24,27 @@ const useStorage = () => {
 
   const removeItem = async (key, item) => {
     try {
-      const entrevistas = getItem(key)
-      const entrevistasAtual = entrevistas.filter((entrevista) => {
+      const formularios = await getItem(key)
+      const formulariosAtual = formularios.filter((formulario) => {
+        console.log(JSON.stringify(formulario), JSON.stringify(item), 123)
         return (
-          entrevista !== item
+          JSON.stringify(formulario) !== JSON.stringify(item)
         )
       })
 
-      await AsyncStorage.setItem(key, JSON.stringify(entrevistasAtual))
+      await AsyncStorage.setItem(key, JSON.stringify(formulariosAtual))
 
-      return entrevistasAtual
+      return formulariosAtual
     } catch (error) {
       console.log('ERRO AO REMOVER ITEM ', error)
     }
   }
 
-  return (
+  return {
     getItem,
     saveItem,
     removeItem
-  )
+  }
 }
 
 export default useStorage
