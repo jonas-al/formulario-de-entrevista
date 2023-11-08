@@ -8,7 +8,12 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      pontuacaoPertencimento: 0,
+      pontuacaoVulnerabilidadeSocioeconomica: 0
+    }
+  })
 
   const [selectInformacoesComunidade, setSelectInformacoesComunidade] = useState('não')
   const [selectProgramaSocial, setSelectProgramaSocial] = useState('não')
@@ -24,6 +29,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
     juntarRespostas({
       questao1: data
     })
+    dispatch({ type: 'proxima' })
   }
 
 
@@ -36,14 +42,11 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
           <Text fontSize="md">
             LER A DECLARAÇÃO DE PERTENCIMENTO, que poderá trazer informações sobre pertencimento.
           </Text>
-          <Text fontWeight='bold' fontSize="md">
-              a) Vínculo e a experiência do candidato com a comunidade tradicional.
-          </Text>
         </Box>
 
 
         <VStack space={6} marginBottom={8}>
-          <FormControl isInvalid={errors.localNascimento ? true : false}>
+          <FormControl isInvalid={errors.localNascimento}>
             <FormControl.Label>
               Onde você nasceu?
             </FormControl.Label>
@@ -65,6 +68,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
               Campo obrigatório
             </FormControl.ErrorMessage>
           </FormControl>
+
 
           <FormControl isInvalid={errors.localCriacao}>
             <FormControl.Label>
@@ -89,6 +93,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
             </FormControl.ErrorMessage>
           </FormControl>
           
+
           <FormControl isInvalid={errors.localPais}>
             <FormControl.Label>
               De onde são seus pais?
@@ -112,6 +117,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
             </FormControl.ErrorMessage>
           </FormControl>
           
+
           <VStack space={4}>
             <Controller
               name='selectInformacoesComunidade'
@@ -192,44 +198,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
               Campo obrigatório
             </FormControl.ErrorMessage>
           </FormControl>
-          
-          <FormControl isInvalid={errors.pontuacaoPertencimento}>
-            <FormControl.Label>
-              Pontuação: 0,0 a 3,0 pts.
-            </FormControl.Label>
-            <Controller
-              name='pontuacaoPertencimento'
-              control={control}
-              rules={{
-                required: false
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  variant="underlined"
-                  placeholder='0,0 a 3,0 pts.'
-                  keyboardType="numeric"
-                  maxLength={3}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-            />
-            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-              Campo obrigatório
-            </FormControl.ErrorMessage>
-          </FormControl>
-        </VStack>
-        
 
-
-        <Box>
-          <Text fontWeight='bold' fontSize="md">
-            b) Condição de vulnerabilidade socioeconômica do candidato e da família.
-          </Text>
-        </Box>
-
-
-        <VStack space={6} marginBottom={8}>
 
           <VStack space={4}>
             <Controller
@@ -312,6 +281,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
             </FormControl.ErrorMessage>
           </FormControl>
           
+
           <FormControl isInvalid={errors.condiçõesDeMorarNoLocalDoCurso}>
             <FormControl.Label>
               Caso você seja aprovado no curso, quais as condições de morar no local onde o curso está sendo ofertado?
@@ -334,10 +304,52 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
               Campo obrigatório
             </FormControl.ErrorMessage>
           </FormControl>
+
+
+          <FormControl isInvalid={errors.pontuacaoPertencimento}>
+            <FormControl.Label flexDirection='colum'>
+              a) Vínculo e a experiência do candidato com a comunidade tradicional.
+      
+              <Text
+                fontSize={16}
+                fontWeight='bold'
+              >
+                Pontuação: 0,0 a 3,0 pts.
+              </Text>
+            </FormControl.Label>
+            <Controller
+              name='pontuacaoPertencimento'
+              control={control}
+              rules={{
+                required: false
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  variant="underlined"
+                  placeholder='0,0 a 3,0 pts.'
+                  keyboardType="numeric"
+                  maxLength={3}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+            />
+            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+              Campo obrigatório
+            </FormControl.ErrorMessage>
+          </FormControl>
           
+
           <FormControl isInvalid={errors.pontuacaoVulnerabilidadeSocioeconomica}>
-            <FormControl.Label>
-              Pontuação: 0,0 a 2,0 pts.
+            <FormControl.Label flexDirection='colum'>
+                b) Condição de vulnerabilidade socioeconômica do candidato e da família. 
+      
+              <Text
+                fontSize={16}
+                fontWeight='bold'
+              >
+                Pontuação: 0,0 a 1,0 pts.
+              </Text>
             </FormControl.Label>
             <Controller
               name='pontuacaoVulnerabilidadeSocioeconomica'
@@ -360,6 +372,7 @@ const PrimeiraQuestao = ({ juntarRespostas, dispatch, respostas}) => {
               Campo obrigatório
             </FormControl.ErrorMessage>
           </FormControl>
+        
         </VStack>
 
 

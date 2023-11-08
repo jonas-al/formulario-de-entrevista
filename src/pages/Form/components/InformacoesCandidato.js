@@ -10,7 +10,6 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues
   } = useForm()
 
   useEffect(() => {
@@ -34,7 +33,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
         </Heading>
       </Box>
 
-        <FormControl isInvalid={errors.nomeCandidato ? true : false}>
+        <FormControl isInvalid={errors.nomeCandidato}>
           <FormControl.Label>
             Nome candidato(a)
           </FormControl.Label>
