@@ -10,7 +10,7 @@ const TelaConfirmacao = ({ juntarRespostas, dispatch, respostas}) => {
     setValue,
   } = useForm()
 
-  const [somaPontuacao, setSomaPontuacao] = useState(10)
+  const [somaPontuacao, setSomaPontuacao] = useState('1,5')
 
   /*useEffect(() => {
     setSomaPontuacao({
@@ -30,75 +30,161 @@ const TelaConfirmacao = ({ juntarRespostas, dispatch, respostas}) => {
   }
 
   return (
-    <ScrollView w='95%'>
-      <VStack space={6} marginBottom={8}>
-        <Heading>
-          Nota Final
+    <ScrollView w='100%'>
+      <Box
+        backgroundColor='primary.700'
+        padding={10}
+        borderBottomRadius={15}
+        marginBottom='6'
+      >
+        <Heading color='white'>
+          NOTA FINAL
         </Heading>
-
-        <Text fontSize='xl' fontWeight='semibold' color='gray.600'>
-          1. Questões sobre o pertencimento.
-        </Text>
-
-        <Text fontSize='2xl' fontWeight='semibold' color='primary.600'>
-          Nota: {somaPontuacao}
-        </Text>
-
-        <Text fontSize='xl' fontWeight='semibold' color='gray.600'>
-          2. Trajetória Escolar do Candidato.
-        </Text>
-
-        <Text fontSize='2xl' fontWeight='semibold' color='primary.600'>
-          Nota: {somaPontuacao}
-        </Text>
-
-        <Text fontSize='xl' fontWeight='semibold' color='gray.600'>
-          3. Experiência de Trabalho e de Participação em Atividades Junto à Comunidade Tradicional.
-        </Text>
-
-        <Text fontSize='2xl' fontWeight='semibold' color='primary.600'>
-          Nota: {somaPontuacao}
-        </Text>
-
-        <Text fontSize='xl' fontWeight='semibold' color='gray.600'>
-          4. Motivações e Expectativas Quanto à Universidade e ao Curso Universitário.
-        </Text>
-
-        <Text fontSize='2xl' fontWeight='semibold' color='primary.600'>
-          Nota: {somaPontuacao}
-        </Text>
-
-        <Text fontSize='2xl' fontWeight='semibold' color='indigo.700'>
-          Nota final: {somaPontuacao}
-        </Text>
-
-      </VStack>
-
-      <HStack justifyContent='space-between' paddingX={10}>
-          <Button
-            variant='ghost'
-            colorScheme='secondary'
-            marginBottom='10%'
-            _text={{
-              fontWeight: 'bold',
-              fontSize: 18
-            }}
-            onPress={() => dispatch({type: 'anterior'})}
+      </Box>
+      
+      <Box padding={2}>
+        <VStack space={6} marginBottom={8}>
+          
+          <HStack
+            background='white'
+            padding={4}
+            borderRadius={10}
+            justifyContent='space-between'
+            alignItems='center'
+            space={2}
+            shadow='3'
           >
-            Voltar
-          </Button>
+            <Text flex={1} fontSize='xl' fontWeight='semibold' color='gray.500'>
+              1. Questões sobre o pertencimento.
+            </Text>
+            <Box
+              padding={4}
+              borderRadius={10}
+              background='gray.700'
+            >
+              <Text fontSize='4xl' fontWeight='semibold' color='white'>
+                {somaPontuacao}
+              </Text>
+            </Box>
+          </HStack>
 
-          <Button
-            marginBottom='10%'
-            _text={{
-              fontWeight: 'bold',
-              fontSize: 18
-            }}
-            onPress={handleSubmit(onSubmit)}
+          <HStack
+            background='white'
+            padding={4}
+            borderRadius={10}
+            justifyContent='space-between'
+            alignItems='center'
+            space={2}
+            shadow='3'
           >
-            Salvar
-          </Button>
-        </HStack>
+            <Text flex={1} fontSize='xl' fontWeight='semibold' color='gray.500'>
+              2. Trajetória Escolar do Candidato.
+            </Text>
+            <Box
+              padding={4}
+              borderRadius={10}
+              background='gray.700'
+            >
+              <Text fontSize='4xl' fontWeight='semibold' color='white'>
+                {somaPontuacao}
+              </Text>
+            </Box>
+          </HStack>
+
+          <HStack
+            background='white'
+            padding={4}
+            borderRadius={10}
+            justifyContent='space-between'
+            alignItems='center'
+            space={2}
+            shadow='3'
+          >
+            <Text flex={1} fontSize='xl' fontWeight='semibold' color='gray.500'>
+              3. Experiência de Trabalho e de Participação em Atividades Junto à Comunidade Tradicional.
+            </Text>
+            <Box
+              padding={4}
+              borderRadius={10}
+              background='gray.700'
+            >
+              <Text fontSize='4xl' fontWeight='semibold' color='white'>
+                {somaPontuacao}
+              </Text>
+            </Box>
+          </HStack>
+
+          <HStack
+            background='white'
+            padding={4}
+            borderRadius={10}
+            justifyContent='space-between'
+            alignItems='center'
+            space={2}
+            shadow='3'
+          >
+            <Text flex={1} fontSize='xl' fontWeight='semibold' color='gray.500'>
+              4. Motivações e Expectativas Quanto à Universidade e ao Curso Universitário.
+            </Text>
+            <Box
+              padding={4}
+              borderRadius={10}
+              background='gray.700'
+            >
+              <Text fontSize='4xl' fontWeight='semibold' color='white'>
+                {somaPontuacao}
+              </Text>
+            </Box>
+          </HStack>
+
+          <VStack
+            background='primary.800'
+            padding={4}
+            borderRadius={10}
+            justifyContent='center'
+            alignItems='center'
+            shadow='3'
+          >
+            <Text
+              color='white'
+              fontSize='xl'
+              fontWeight='medium'
+            >
+              Total
+            </Text>
+            <Box
+              borderRadius={10}
+            >
+              <Text fontSize='4xl' fontWeight='semibold' color='white'>
+                {'6,0'}
+              </Text>
+            </Box>
+            <HStack space='1/2' mt='6'>
+              <Button
+                variant='ghost'
+                _text={{
+                  fontWeight: 'bold',
+                  fontSize: 18,
+                  color: 'white',
+                  margin: 0
+                }}
+                onPress={() => dispatch({type: 'anterior'})}
+              >
+                Voltar
+              </Button>
+              <Button
+                _text={{
+                  fontWeight: 'bold',
+                  fontSize: 18
+                }}
+                onPress={handleSubmit(onSubmit)}
+              >
+                Salvar
+              </Button>
+            </HStack>
+          </VStack>
+        </VStack>
+      </Box>
     </ScrollView>
   )
 }
