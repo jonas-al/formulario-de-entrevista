@@ -26,7 +26,6 @@ const useStorage = () => {
     try {
       const formularios = await getItem(key)
       const formulariosAtual = formularios.filter((formulario) => {
-        console.log(JSON.stringify(formulario), JSON.stringify(item), 123)
         return (
           JSON.stringify(formulario) !== JSON.stringify(item)
         )

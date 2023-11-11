@@ -2,7 +2,7 @@ import { useEffect, useState} from 'react'
 import { Box, Input, FormControl, TextArea, Heading, Text, ScrollView, Button, WarningOutlineIcon, VStack, HStack, Radio } from 'native-base'
 import { useForm, Controller } from "react-hook-form"
 
-const QuartaQuestao = ({ juntarRespostas, dispatch, respostas}) => {
+const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
   const {
     control,
     handleSubmit,
@@ -10,8 +10,8 @@ const QuartaQuestao = ({ juntarRespostas, dispatch, respostas}) => {
     setValue,
   } = useForm({
     defaultValues: {
-      pontuacaoEntendimentoProfissional: 0,
-      pontuacaoEntendimentoBeneficiosRetorno: 0
+      pontuacaoEntendimentoProfissional: '',
+      pontuacaoEntendimentoBeneficiosRetorno: ''
     }
   })
 
@@ -23,7 +23,7 @@ const QuartaQuestao = ({ juntarRespostas, dispatch, respostas}) => {
   }, [])
 
   const onSubmit = (data) => {
-    juntarRespostas({
+    handleRepostas('juntar', {
       questao4: data
     })
     dispatch({ type: 'proxima' })

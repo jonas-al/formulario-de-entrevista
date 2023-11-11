@@ -2,9 +2,7 @@ import { useEffect } from 'react'
 import { Box, Input, FormControl, Radio, Heading, ScrollView, Button, WarningOutlineIcon, VStack } from 'native-base'
 import { useForm, Controller } from "react-hook-form"
 
-import { saveItem } from '../../../hooks/useStorage'
-
-const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
+const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
   const {
     control,
     handleSubmit,
@@ -19,7 +17,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
 
 
   const onSubmit = async (data) => {
-    juntarRespostas(data)
+    handleRepostas('juntar', data)
     dispatch({ type: 'proxima' })
   }
 
@@ -73,6 +71,7 @@ const InformacoesCandidato = ({ juntarRespostas, dispatch, respostas }) => {
                 variant="filled"
                 placeholder='Nº de Inscrição'
                 value={value}
+                keyboardType='numeric'
               />
             )}
           />

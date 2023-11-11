@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 // Páginas
 import Home from './pages/Home'
 import Form from './pages/Form'
-import Forms from './pages/Forms'
+import ListingForms from './pages/ListingForms'
 
 const Tab = createBottomTabNavigator()
 
@@ -12,7 +12,7 @@ export const Routes = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='Novo Cadastro'
+        name='Entrevista'
         component={Form}
         options={{
           tabBarShowLabel: true,
@@ -36,8 +36,9 @@ export const Routes = () => {
       />
 
     <Tab.Screen
-        name='Formulários Cadastrados'
-        component={Forms}
+        name='Lista de Entrevistas'
+
+        component={ListingForms}
         options={{
           tabBarShowLabel: true,
           headerShown: false,
