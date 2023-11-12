@@ -1,22 +1,41 @@
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 
 // Páginas
 import Home from './pages/Home'
+import Login from './pages/Login'
 import Form from './pages/Form'
-import ListingForms from './pages/ListingForms'
+import ListingInterviews from './pages/ListingInterviews'
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
-export const Routes = () => {
+const optionsHeader = {
+  headerShown: true,
+  headerStyle: {
+    backgroundColor: '#0e7490',
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10
+  },
+  headerTitleStyle: {
+    fontWeight: 'bold'
+  },
+  headerTintColor: '#fff'
+}
+
+const PagesWithTab = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName='Entrevista'
+    >
       <Tab.Screen
         name='Entrevista'
         component={Form}
         options={{
-          tabBarShowLabel: true,
-          headerShown: false,
+          ...optionsHeader,
+          title: 'Formulário de Entrevista',
           tabBarIcon: ({ focused, size, color }) => {
             if (focused) {
               return <Ionicons
@@ -37,11 +56,9 @@ export const Routes = () => {
 
     <Tab.Screen
         name='Lista de Entrevistas'
-
-        component={ListingForms}
+        component={ListingInterviews}
         options={{
-          tabBarShowLabel: true,
-          headerShown: false,
+          ...optionsHeader,
           tabBarIcon: ({ focused, size, color }) => {
             if (focused) {
               return <Ionicons
@@ -60,5 +77,28 @@ export const Routes = () => {
         }}
       />
     </Tab.Navigator>
+  )
+}
+
+export const Routes = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={optionsHeader}
+        />
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={optionsHeader}
+        />
+        <Stack.Screen
+          name='PagesWithTab'
+          component={PagesWithTab}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
