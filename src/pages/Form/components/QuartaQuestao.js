@@ -1,5 +1,5 @@
-import { useEffect, useState} from 'react'
-import { Box, Input, FormControl, TextArea, Heading, Text, ScrollView, Button, WarningOutlineIcon, VStack, HStack, Radio } from 'native-base'
+import { useEffect } from 'react'
+import { Box, Input, FormControl, Heading, Text, ScrollView, Button, WarningOutlineIcon, VStack, HStack } from 'native-base'
 import { useForm, Controller } from "react-hook-form"
 
 const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
@@ -32,12 +32,11 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
 
   return (
     <ScrollView w='95%'>
-        <Box marginBottom={4}>
+        <Box marginBottom={4} marginTop='10'>
           <Heading>
             4. Motivações e Expectativas Quanto à Universidade e ao Curso Universitário.
           </Heading>
         </Box>
-
 
         <VStack space={6} marginBottom={8}>
           <FormControl isInvalid={errors.reazoesCurso}>
@@ -55,6 +54,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -79,6 +80,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -103,6 +106,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -126,6 +131,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -150,6 +157,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -174,6 +183,8 @@ const QuartaQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />

@@ -35,7 +35,7 @@ const TerceiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
 
   return (
     <ScrollView w='95%'>
-        <Box marginBottom={4}>
+        <Box marginBottom={4} marginTop='10'>
           <Heading>
             3. Experiência de Trabalho e de Participação em Atividades Junto à Comunidade Tradicional.
           </Heading>
@@ -58,6 +58,8 @@ const TerceiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -81,6 +83,8 @@ const TerceiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -138,6 +142,8 @@ const TerceiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                     value={value}
                     isDisabled={selectParticipacaoFamilia === 'não' ? true : false}
                     isReadOnly={selectParticipacaoFamilia === 'não' ? true : false}
+                    borderWidth='2'
+                    borderColor='gray.300'
                   />
                 )}
               />
@@ -218,7 +224,7 @@ const TerceiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
 
         <HStack justifyContent='space-between' paddingX={10}>
           <Button
-            variant='ghost'
+            variant='unstyled'
             colorScheme='secondary'
             marginBottom='10%'
             _text={{

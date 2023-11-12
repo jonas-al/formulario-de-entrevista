@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {Text, Heading, ScrollView, Button, VStack, HStack, Box, AlertDialog } from 'native-base'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
 import useStorage from '../../../hooks/useStorage'
 
@@ -100,52 +100,55 @@ const TelaConfirmacao = ({ handleRepostas, dispatch, respostas }) => {
 
       </AlertDialog>
 
-      <VStack
-        backgroundColor='primary.700'
-        padding={10}
-        borderBottomRadius={15}
-        marginBottom='6'
-        space={4}
-      >
-        <Heading color='white' textAlign='center'>
-          NOTA FINAL
-        </Heading>
-
-        <VStack
-          backgroundColor='white' 
-          padding={3}
-          borderRadius={10}
-          shadow='3'
-        >
-
-          <Text color='gray.600' fontSize={20} fontWeight='bold'>
-            Nome
-          </Text>
-          <Text color='gray.600' fontSize={18}>
-            {respostas.nomeCandidato}
-          </Text>
-
-        </VStack>
-
-        <VStack
-          backgroundColor='white' 
-          padding={3}
-          borderRadius={10}
-          shadow='3'
-        >
-
-          <Text color='gray.600' fontSize={20} fontWeight='bold'>
-            Inscrição
-          </Text>
-          <Text color='gray.600' fontSize={18}>
-            {respostas.inscricaoCandidato}
-          </Text>
-
-        </VStack>
-
-      </VStack>
+      
       
       <Box padding={2}>
+        <VStack
+          backgroundColor='primary.700'
+          padding={6}
+          borderRadius={15}
+          marginBottom='6'
+          marginTop='5'
+          space={4}
+        >
+          <Heading color='white' textAlign='center'>
+            NOTA FINAL
+          </Heading>
+
+          <VStack
+            backgroundColor='white' 
+            padding={3}
+            borderRadius={10}
+            shadow='3'
+          >
+
+            <Text color='gray.600' fontSize={20} fontWeight='bold'>
+              Nome
+            </Text>
+            <Text color='gray.600' fontSize={18}>
+              {respostas.nomeCandidato}
+            </Text>
+
+          </VStack>
+
+          <VStack
+            backgroundColor='white' 
+            padding='3'
+            borderRadius={10}
+            shadow='3'
+          >
+
+            <Text color='gray.600' fontSize={20} fontWeight='bold'>
+              Inscrição
+            </Text>
+            <Text color='gray.600' fontSize={18}>
+              {respostas.inscricaoCandidato}
+            </Text>
+
+          </VStack>
+
+        </VStack>
+
         <VStack space={6} marginBottom={8}>
           
           <HStack

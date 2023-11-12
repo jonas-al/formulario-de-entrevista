@@ -35,7 +35,7 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
 
   return (
     <ScrollView w='95%'>
-        <Box marginBottom={4}>
+        <Box marginBottom={4} marginTop='10'>
           <Heading>
             1. Questões sobre o pertencimento.
           </Heading>
@@ -61,6 +61,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -85,6 +87,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -109,6 +113,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -166,6 +172,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                     value={value}
                     isDisabled={selectInformacoesComunidade === 'não' ? true : false}
                     isReadOnly={selectInformacoesComunidade === 'não' ? true : false}
+                    borderWidth='2'
+                    borderColor='gray.300'
                   />
                 )}
               />
@@ -191,6 +199,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   variant="filled"
                   value={value}
                   onChangeText={onChange}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -273,6 +283,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -297,6 +309,8 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -378,7 +392,7 @@ const PrimeiraQuestao = ({ handleRepostas, dispatch, respostas}) => {
 
         <HStack justifyContent='space-between' paddingX={10}>
           <Button
-            variant='ghost'
+            variant='unstyled'
             colorScheme='secondary'
             marginBottom='10%'
             _text={{

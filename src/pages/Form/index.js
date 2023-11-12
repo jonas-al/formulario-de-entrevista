@@ -1,5 +1,5 @@
 import { useState, useReducer } from 'react'
-import { Box } from 'native-base'
+import { Box, Heading } from 'native-base'
 
 import InformacoesCandidato from './components/InformacoesCandidato'
 import PrimeiraQuestao from './components/PrimeiraQuestao'
@@ -56,13 +56,15 @@ const Form = () => {
   }
 
   return (
-    <Box flex={1} alignItems='center' justifyContent='center' marginTop='10%'>
-      {state.numeroForm === 0 && <InformacoesCandidato handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 1 && <PrimeiraQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 2 && <SegundaQuestão handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 3 && <TerceiraQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 4 && <QuartaQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
-      {state.numeroForm === 5 && <TelaConfirmacao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+    <Box flex={1}>
+      <Box flex={1} alignItems='center'>
+        {state.numeroForm === 0 && <InformacoesCandidato handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+        {state.numeroForm === 1 && <PrimeiraQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+        {state.numeroForm === 2 && <SegundaQuestão handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+        {state.numeroForm === 3 && <TerceiraQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+        {state.numeroForm === 4 && <QuartaQuestao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+        {state.numeroForm === 5 && <TelaConfirmacao handleRepostas={handleRepostas} dispatch={dispatch} respostas={respostas} />}
+      </Box>
     </Box>
   )
 }

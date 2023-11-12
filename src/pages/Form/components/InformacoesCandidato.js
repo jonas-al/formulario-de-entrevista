@@ -23,7 +23,7 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
 
   return (
     <ScrollView w='95%'>
-      <VStack space={6} marginBottom={8}>
+      <VStack space={6} marginBottom={8} marginTop='10'>
 
       <Box>
         <Heading>
@@ -47,6 +47,8 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
                 variant="filled"
                 placeholder='Nome do canditado(a)'
                 value={value}
+                borderWidth='2'
+                borderColor='gray.300'
               />
             )}
           />
@@ -72,6 +74,8 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
                 placeholder='Nº de Inscrição'
                 value={value}
                 keyboardType='numeric'
+                borderWidth='2'
+                borderColor='gray.300'
               />
             )}
           />
@@ -96,6 +100,8 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
                 variant="filled"
                 placeholder='Local da entrevista'
                 value={value}
+                borderWidth='2'
+                borderColor='gray.300'
               />
             )}
           />

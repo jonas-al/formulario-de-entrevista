@@ -26,7 +26,7 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
   const [selectSofreuDescriminacao, setSelectSofreuDescriminacao] = useState('não')
 
   const onSubmit = (data) => {
-    handleRepostas({
+    handleRepostas('juntar', {
       questao2: data
     })
     dispatch({ type: 'proxima' })
@@ -35,7 +35,7 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
 
   return (
     <ScrollView w='95%'>
-        <Box marginBottom={4}>
+        <Box marginBottom={4} marginTop='10'>
           <Heading>
             2. Trajetória Escolar do Candidato.
           </Heading>
@@ -58,6 +58,8 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -81,6 +83,8 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -104,6 +108,8 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -154,12 +160,14 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
-                    placeholder='Qual comunidade organização?'
+                    placeholder='Como procedeu?'
                     onChangeText={onChange}
                     variant="filled"
                     value={value}
                     isDisabled={selectSofreuDescriminacao === 'não' ? true : false}
                     isReadOnly={selectSofreuDescriminacao === 'não' ? true : false}
+                    borderWidth='2'
+                    borderColor='gray.300'
                   />
                 )}
               />
@@ -185,6 +193,8 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
                   onChangeText={onChange}
                   variant="filled"
                   value={value}
+                  borderWidth='2'
+                  borderColor='gray.300'
                 />
               )}
             />
@@ -263,7 +273,7 @@ const SegundaQuestão = ({ handleRepostas, dispatch, respostas}) => {
 
         <HStack justifyContent='space-between' paddingX={10}>
           <Button
-            variant='ghost'
+            variant='unstyled'
             colorScheme='secondary'
             marginBottom='10%'
             _text={{
