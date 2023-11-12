@@ -1,11 +1,11 @@
-import { ScrollView, Box, Heading, Pressable, AlertDialog, Button} from 'native-base'
+import { ScrollView, Box, Pressable, AlertDialog, Button} from 'native-base'
 import useStorage from '../../hooks/useStorage'
 import { useEffect, useState } from 'react'
 import { useIsFocused } from '@react-navigation/native'
 
 import ItemEntrevista from './components/ItemEntrevista'
 
-const ListingForms = () => {
+const ListingInterviews = () => {
   const { getItem, removeItem } = useStorage()
   const focused = useIsFocused()
 
@@ -69,16 +69,6 @@ const ListingForms = () => {
       </AlertDialog>
       
       <Box
-        backgroundColor='primary.700'
-        padding={10}
-        borderBottomRadius={15}
-      >
-        <Heading color='white' textAlign='center'>
-          Entrevistas Armazenadas
-        </Heading>
-      </Box>
-
-      <Box
         padding='3'
       >
         {listaEntrevistas.map((entrevista, index) => {
@@ -102,4 +92,4 @@ const ListingForms = () => {
   )
 }
 
-export default ListingForms
+export default ListingInterviews

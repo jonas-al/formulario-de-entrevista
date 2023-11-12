@@ -1,10 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { VStack, FormControl, WarningOutlineIcon, Input, Button, Pressable, Icon, KeyboardAvoidingView } from 'native-base'
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
-    <View>
-      <Text>index</Text>
-    </View>
+    <VStack
+      flex={1}
+      justifyContent='center'
+      padding='20'
+    >
+      <Button
+        onPress={() => navigation.navigate('Login')}
+        colorScheme='muted'
+      >
+        Ir para login
+      </Button>
+    </VStack>
   )
 }
 
