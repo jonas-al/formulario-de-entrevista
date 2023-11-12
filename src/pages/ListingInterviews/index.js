@@ -40,7 +40,7 @@ const ListingInterviews = () => {
           </AlertDialog.Header>
 
           <AlertDialog.Body>
-            Você apagar essa entrevista?
+            Você deseja apagar essa entrevista?
           </AlertDialog.Body>
 
           <AlertDialog.Footer>
