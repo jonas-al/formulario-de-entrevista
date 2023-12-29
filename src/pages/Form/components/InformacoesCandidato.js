@@ -1,6 +1,16 @@
-import { useEffect } from 'react'
-import { Box, Input, FormControl, Radio, Heading, ScrollView, Button, WarningOutlineIcon, VStack } from 'native-base'
-import { useForm, Controller } from "react-hook-form"
+import { useEffect } from 'react';
+import {
+  Box,
+  Input,
+  FormControl,
+  Radio,
+  Heading,
+  ScrollView,
+  Button,
+  WarningOutlineIcon,
+  VStack,
+} from 'native-base';
+import { useForm, Controller } from 'react-hook-form';
 
 const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
   const {
@@ -8,47 +18,46 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm()
+  } = useForm();
 
   useEffect(() => {
-    const campos = ['nomeCandidato', 'inscricaoCandidato', 'localidadeEntrevista', 'selecaoCandidato']
-    campos.forEach((campo) => setValue(campo, respostas[campo]))
-  }, [])
-
+    const campos = [
+      'nomeCandidato',
+      'inscricaoCandidato',
+      'localidadeEntrevista',
+      'selecaoCandidato',
+    ];
+    campos.forEach((campo) => setValue(campo, respostas[campo]));
+  }, [respostas, setValue]);
 
   const onSubmit = async (data) => {
-    handleRepostas('juntar', data)
-    dispatch({ type: 'proxima' })
-  }
+    handleRepostas('juntar', data);
+    dispatch({ type: 'proxima' });
+  };
 
   return (
-    <ScrollView w='95%'>
-      <VStack space={6} marginBottom={8} marginTop='10'>
-
-      <Box>
-        <Heading>
-          Informação do candidato(a)
-        </Heading>
-      </Box>
+    <ScrollView w="95%">
+      <VStack space={6} marginBottom={8} marginTop="10">
+        <Box>
+          <Heading>Informação do candidato(a)</Heading>
+        </Box>
 
         <FormControl isInvalid={errors.nomeCandidato}>
-          <FormControl.Label>
-            Nome candidato(a)
-          </FormControl.Label>
+          <FormControl.Label>Nome candidato(a)</FormControl.Label>
           <Controller
-            name='nomeCandidato'
+            name="nomeCandidato"
             control={control}
             rules={{
-              required: true
+              required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 onChangeText={onChange}
                 variant="filled"
-                placeholder='Nome do canditado(a)'
+                placeholder="Nome do canditado(a)"
                 value={value}
-                borderWidth='2'
-                borderColor='gray.300'
+                borderWidth="2"
+                borderColor="gray.300"
               />
             )}
           />
@@ -57,25 +66,23 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
           </FormControl.ErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={errors.inscricaoCandidato ? true : false}>
-          <FormControl.Label>
-            Número de inscrição do candidato
-          </FormControl.Label>
+        <FormControl isInvalid={!!errors.inscricaoCandidato}>
+          <FormControl.Label>Número de inscrição do candidato</FormControl.Label>
           <Controller
-            name='inscricaoCandidato'
+            name="inscricaoCandidato"
             control={control}
             rules={{
-              required: true
+              required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 onChangeText={onChange}
                 variant="filled"
-                placeholder='Nº de Inscrição'
+                placeholder="Nº de Inscrição"
                 value={value}
-                keyboardType='numeric'
-                borderWidth='2'
-                borderColor='gray.300'
+                keyboardType="numeric"
+                borderWidth="2"
+                borderColor="gray.300"
               />
             )}
           />
@@ -84,24 +91,22 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
           </FormControl.ErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={errors.localidadeEntrevista ? true : false}>
-          <FormControl.Label>
-            Localidade de realização da entrevista
-          </FormControl.Label>
+        <FormControl isInvalid={!!errors.localidadeEntrevista}>
+          <FormControl.Label>Localidade de realização da entrevista</FormControl.Label>
           <Controller
-            name='localidadeEntrevista'
+            name="localidadeEntrevista"
             control={control}
             rules={{
-              required: true
+              required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 onChangeText={onChange}
                 variant="filled"
-                placeholder='Local da entrevista'
+                placeholder="Local da entrevista"
                 value={value}
-                borderWidth='2'
-                borderColor='gray.300'
+                borderWidth="2"
+                borderColor="gray.300"
               />
             )}
           />
@@ -110,21 +115,16 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
           </FormControl.ErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={errors.selecaoCandidato ? true : false}>
-          <FormControl.Label>
-            Seleção
-          </FormControl.Label>
+        <FormControl isInvalid={!!errors.selecaoCandidato}>
+          <FormControl.Label>Seleção</FormControl.Label>
           <Controller
-            name='selecaoCandidato'
+            name="selecaoCandidato"
             control={control}
             rules={{
-              required: true
+              required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Radio.Group
-                onChange={onChange}
-                value={value || ''}
-              >
+            render={({ field: { onChange, value } }) => (
+              <Radio.Group onChange={onChange} value={value || ''}>
                 <Radio value="indigina" my={1}>
                   Indigína
                 </Radio>
@@ -139,21 +139,20 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
             Campo obrigatório
           </FormControl.ErrorMessage>
         </FormControl>
-
       </VStack>
 
       <Button
-          marginBottom='10%'
-          _text={{
-            fontWeight: 'bold',
-            fontSize: 18
-          }}
-          onPress={handleSubmit(onSubmit)}
-        >
-          Continuar
+        marginBottom="10%"
+        _text={{
+          fontWeight: 'bold',
+          fontSize: 18,
+        }}
+        onPress={handleSubmit(onSubmit)}
+      >
+        Continuar
       </Button>
     </ScrollView>
-  )
-}
+  );
+};
 
-export default InformacoesCandidato
+export default InformacoesCandidato;

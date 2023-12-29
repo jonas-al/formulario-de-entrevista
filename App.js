@@ -1,12 +1,10 @@
-import { NativeBaseProvider } from "native-base";
-import { NavigationContainer } from "@react-navigation/native";
-import { Routes } from "./src/routes";
+import { NativeBaseProvider } from 'native-base';
+import Routes from './src/routes';
 
+const App = () => (
+  <NativeBaseProvider>
+    <Routes />
+  </NativeBaseProvider>
+);
 
-export default function App() {
-  return (
-    <NativeBaseProvider>
-      <Routes />
-    </NativeBaseProvider>
-  );
-}
+export default App;

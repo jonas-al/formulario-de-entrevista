@@ -1,95 +1,74 @@
-import { ScrollView, Box, Pressable, AlertDialog, Button} from 'native-base'
-import useStorage from '../../hooks/useStorage'
-import { useEffect, useState } from 'react'
-import { useIsFocused } from '@react-navigation/native'
+import { ScrollView, Box, Pressable, AlertDialog, Button } from 'native-base';
+import { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import useStorage from '../../hooks/useStorage';
 
-import ItemEntrevista from './components/ItemEntrevista'
+import ItemEntrevista from './components/ItemEntrevista';
 
 const ListingInterviews = () => {
-  const { getItem, removeItem } = useStorage()
-  const focused = useIsFocused()
+  const { getItem, removeItem } = useStorage();
+  const focused = useIsFocused();
 
-  const [listaEntrevistas, setListaEntrevistas] = useState([])
-  const [caixaDialogoAberta, setCaixaDialogoAberta] = useState(false)
-  const [indexEntrevista, setIndexEntrevista] = useState(null)
-  
+  const [listaEntrevistas, setListaEntrevistas] = useState([]);
+  const [caixaDialogoAberta, setCaixaDialogoAberta] = useState(false);
+  const [indexEntrevista, setIndexEntrevista] = useState(null);
 
   useEffect(() => {
     const getForms = async () => {
-      const entrevistas = await getItem('@entrevistas')
-      setListaEntrevistas(entrevistas)
-    }
+      const entrevistas = await getItem('@entrevistas');
+      setListaEntrevistas(entrevistas);
+    };
 
-    getForms()
-  }, [focused])
+    getForms();
+  }, [focused, getItem]);
 
   const handleEntrevista = async () => {
-    const entrevistas = await removeItem('@entrevistas', listaEntrevistas[indexEntrevista])
-    setListaEntrevistas(entrevistas)
-  }
+    const entrevistas = await removeItem('@entrevistas', listaEntrevistas[indexEntrevista]);
+    setListaEntrevistas(entrevistas);
+  };
 
   return (
-    <ScrollView w='100%'>
-      <AlertDialog
-        isOpen={caixaDialogoAberta}
-      >
+    <ScrollView w="100%">
+      <AlertDialog isOpen={caixaDialogoAberta}>
         <AlertDialog.Content>
+          <AlertDialog.Header>Entrevista</AlertDialog.Header>
 
-          <AlertDialog.Header>
-            Entrevista
-          </AlertDialog.Header>
-
-          <AlertDialog.Body>
-            Você deseja apagar essa entrevista?
-          </AlertDialog.Body>
+          <AlertDialog.Body>Você deseja apagar essa entrevista?</AlertDialog.Body>
 
           <AlertDialog.Footer>
-
-            <Button 
-              variant='unstyled'
-              onPress={() => setCaixaDialogoAberta(false)}  
-            >
+            <Button variant="unstyled" onPress={() => setCaixaDialogoAberta(false)}>
               Não
             </Button>
 
             <Button
-              colorScheme='danger'
+              colorScheme="danger"
               onPress={async () => {
-                await handleEntrevista()
-                setCaixaDialogoAberta(false)
+                await handleEntrevista();
+                setCaixaDialogoAberta(false);
               }}
             >
               Sim
             </Button>
-
           </AlertDialog.Footer>
-
         </AlertDialog.Content>
-
       </AlertDialog>
-      
-      <Box
-        padding='3'
-      >
-        {listaEntrevistas.map((entrevista, index) => {
-          return (
-            <Pressable
-              key={index}
-              onPress={() => {
-                setCaixaDialogoAberta(true)
-                setIndexEntrevista(index)
-              }}
-            >
-              <ItemEntrevista
-                entrevista={entrevista}
-              />
-            </Pressable>
-          )
-        })}
+
+      <Box padding="3">
+        {listaEntrevistas.map((entrevista, index) => (
+          <Pressable
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            onPress={() => {
+              setCaixaDialogoAberta(true);
+              setIndexEntrevista(index);
+            }}
+          >
+            <ItemEntrevista entrevista={entrevista} />
+          </Pressable>
+        ))}
       </Box>
-
     </ScrollView>
-  )
-}
+  );
+};
 
-export default ListingInterviews
+export default ListingInterviews;
