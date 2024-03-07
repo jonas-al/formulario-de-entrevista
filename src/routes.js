@@ -2,13 +2,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { Iconify } from 'react-native-iconify';
 
 // Páginas
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Form from './pages/Form';
 import ListingInterviews from './pages/ListingInterviews';
+import PasswordRecovery from './pages/PasswordRecovery';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,34 +29,46 @@ const optionsHeader = {
 };
 
 const PagesWithTab = () => (
-  <Tab.Navigator initialRouteName="Entrevista">
+  <Tab.Navigator
+    initialRouteName="Entrevista"
+    screenOptions={{
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: '#FFFFFF',
+      tabBarInactiveTintColor: '#FFFFFF',
+      tabBarStyle: {
+        backgroundColor: '#AD550B',
+        borderTopStartRadius: 24,
+        borderTopEndRadius: 24,
+        height: 96,
+      },
+    }}
+  >
     <Tab.Screen
       name="Entrevista"
       component={Form}
       options={{
         ...optionsHeader,
         title: 'Formulário de Entrevista',
-        tabBarIcon: ({ focused, size, color }) => {
+        tabBarIcon: ({ focused, color }) => {
           if (focused) {
-            return <Ionicons size={size} color={color} name="clipboard" />;
+            return <Iconify icon="ant-design:home-filled" size={28} color={color} />;
           }
-
-          return <Ionicons size={size} color={color} name="clipboard-outline" />;
+          return <Iconify icon="ant-design:home-filled" size={28} color="hsla(0, 0%, 100%, 0.6)" />;
         },
       }}
     />
-
     <Tab.Screen
       name="Lista de Entrevistas"
       component={ListingInterviews}
       options={{
         ...optionsHeader,
-        tabBarIcon: ({ focused, size, color }) => {
+        tabBarIcon: ({ focused, color }) => {
           if (focused) {
-            return <Ionicons size={size} color={color} name="list" />;
+            return <Iconify icon="fluent:form-new-24-filled" size={28} color={color} />;
           }
-
-          return <Ionicons size={size} color={color} name="list-outline" />;
+          return (
+            <Iconify icon="fluent:form-new-24-filled" size={28} color="hsla(0, 0%, 100%, 0.6)" />
+          );
         },
       }}
     />
@@ -66,6 +80,7 @@ const Routes = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} options={optionsHeader} />
       <Stack.Screen name="Login" component={Login} options={optionsHeader} />
+      <Stack.Screen name="PasswordRecovery" component={PasswordRecovery} options={optionsHeader} />
       <Stack.Screen name="PagesWithTab" component={PagesWithTab} />
     </Stack.Navigator>
   </NavigationContainer>
