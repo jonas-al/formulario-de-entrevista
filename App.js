@@ -15,6 +15,12 @@ import {
 import Routes from './src/routes';
 
 const theme = extendTheme({
+  colors: {
+    brown: {
+      600: '#AD550B',
+    },
+  },
+
   fontConfig: {
     Poppins: {
       100: {

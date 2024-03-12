@@ -36,14 +36,20 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
   };
 
   return (
-    <ScrollView w="95%">
-      <VStack space={6} marginBottom={8} marginTop="10">
+    <ScrollView w="100%" pt="24" px="7" contentContainerStyle={{ flexGrow: 1 }} bgColor="white">
+      <VStack flex="1" space="6">
         <Box>
-          <Heading>Informação do candidato(a)</Heading>
+          <Heading size="2xl" fontWeight="semibold">
+            Nova Entrevista
+          </Heading>
         </Box>
 
         <FormControl isInvalid={errors.nomeCandidato}>
-          <FormControl.Label>Nome candidato(a)</FormControl.Label>
+          <FormControl.Label>
+            <Heading size="md" color="#737373" fontWeight="semibold">
+              Nome candidato(a)
+            </Heading>
+          </FormControl.Label>
           <Controller
             name="nomeCandidato"
             control={control}
@@ -56,8 +62,12 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
                 variant="filled"
                 placeholder="Nome do canditado(a)"
                 value={value}
-                borderWidth="2"
-                borderColor="gray.300"
+                rounded="full"
+                size="2xl"
+                fontWeight="semibold"
+                fontSize="md"
+                h="12"
+                _focus={{ backgroundColor: 'gray.100', borderColor: 'gray.500' }}
               />
             )}
           />
@@ -67,7 +77,11 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.inscricaoCandidato}>
-          <FormControl.Label>Número de inscrição do candidato</FormControl.Label>
+          <FormControl.Label>
+            <Heading size="md" color="#737373" fontWeight="semibold">
+              Número de inscrição
+            </Heading>
+          </FormControl.Label>
           <Controller
             name="inscricaoCandidato"
             control={control}
@@ -81,8 +95,12 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
                 placeholder="Nº de Inscrição"
                 value={value}
                 keyboardType="numeric"
-                borderWidth="2"
-                borderColor="gray.300"
+                rounded="full"
+                size="2xl"
+                fontWeight="semibold"
+                fontSize="md"
+                h="12"
+                _focus={{ backgroundColor: 'gray.100', borderColor: 'gray.500' }}
               />
             )}
           />
@@ -92,7 +110,11 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.localidadeEntrevista}>
-          <FormControl.Label>Localidade de realização da entrevista</FormControl.Label>
+          <FormControl.Label>
+            <Heading size="md" color="#737373" fontWeight="semibold">
+              Local da entrevista
+            </Heading>
+          </FormControl.Label>
           <Controller
             name="localidadeEntrevista"
             control={control}
@@ -103,10 +125,14 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
               <Input
                 onChangeText={onChange}
                 variant="filled"
-                placeholder="Local da entrevista"
+                placeholder="Ex. Belém"
                 value={value}
-                borderWidth="2"
-                borderColor="gray.300"
+                rounded="full"
+                size="2xl"
+                fontWeight="semibold"
+                fontSize="md"
+                h="12"
+                _focus={{ backgroundColor: 'gray.100', borderColor: 'gray.500' }}
               />
             )}
           />
@@ -116,7 +142,11 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.selecaoCandidato}>
-          <FormControl.Label>Seleção</FormControl.Label>
+          <FormControl.Label>
+            <Heading size="md" color="#737373" fontWeight="semibold">
+              Seleção
+            </Heading>
+          </FormControl.Label>
           <Controller
             name="selecaoCandidato"
             control={control}
@@ -125,11 +155,23 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
             }}
             render={({ field: { onChange, value } }) => (
               <Radio.Group onChange={onChange} value={value || ''}>
-                <Radio value="indigina" my={1}>
+                <Radio
+                  borderColor="brown"
+                  colorScheme="brown"
+                  _pressed={{ borderColor: 'brown' }}
+                  value="indigina"
+                  my={1}
+                >
                   Indigína
                 </Radio>
 
-                <Radio value="quilombola" my={1}>
+                <Radio
+                  borderColor="brown"
+                  colorScheme="brown"
+                  _pressed={{ borderColor: 'brown' }}
+                  value="quilombola"
+                  my={1}
+                >
                   Quilombola
                 </Radio>
               </Radio.Group>
@@ -142,12 +184,15 @@ const InformacoesCandidato = ({ handleRepostas, dispatch, respostas }) => {
       </VStack>
 
       <Button
+        onPress={handleSubmit(onSubmit)}
         marginBottom="10%"
         _text={{
-          fontWeight: 'bold',
+          fontWeight: 'semibold',
           fontSize: 18,
         }}
-        onPress={handleSubmit(onSubmit)}
+        rounded="full"
+        bgColor="#AD550B"
+        size="lg"
       >
         Continuar
       </Button>
