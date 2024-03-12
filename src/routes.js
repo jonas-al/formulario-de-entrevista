@@ -5,11 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Iconify } from 'react-native-iconify';
 
 // Páginas
-import Home from './pages/Home';
+import LaunchScreen from './pages/LaunchScreen';
 import Login from './pages/Login';
 import Form from './pages/Form';
 import ListingInterviews from './pages/ListingInterviews';
 import PasswordRecovery from './pages/PasswordRecovery';
+import Home from './pages/Home';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,7 +30,7 @@ const optionsHeader = {
 
 const PagesWithTab = () => (
   <Tab.Navigator
-    initialRouteName="Entrevista"
+    initialRouteName="Home"
     screenOptions={{
       tabBarShowLabel: false,
       tabBarActiveTintColor: '#FFFFFF',
@@ -43,11 +44,11 @@ const PagesWithTab = () => (
     }}
   >
     <Tab.Screen
-      name="Entrevista"
-      component={Form}
+      name="Home"
+      component={Home}
       options={{
         ...optionsHeader,
-        title: 'Formulário de Entrevista',
+        title: 'Home',
         tabBarIcon: ({ focused, color }) => {
           if (focused) {
             return <Iconify icon="ant-design:home-filled" size={28} color={color} />;
@@ -57,10 +58,11 @@ const PagesWithTab = () => (
       }}
     />
     <Tab.Screen
-      name="Lista de Entrevistas"
-      component={ListingInterviews}
+      name="Form"
+      component={Form}
       options={{
         ...optionsHeader,
+        title: 'Form',
         tabBarIcon: ({ focused, color }) => {
           if (focused) {
             return <Iconify icon="fluent:form-new-24-filled" size={28} color={color} />;
@@ -71,13 +73,26 @@ const PagesWithTab = () => (
         },
       }}
     />
+    <Tab.Screen
+      name="Lista de Entrevistas"
+      component={ListingInterviews}
+      options={{
+        ...optionsHeader,
+        tabBarIcon: ({ focused, color }) => {
+          if (focused) {
+            return <Iconify icon="fluent:list-16-regular" size={28} color={color} />;
+          }
+          return <Iconify icon="fluent:list-16-regular" size={28} color="hsla(0, 0%, 100%, 0.6)" />;
+        },
+      }}
+    />
   </Tab.Navigator>
 );
 
 const Routes = () => (
   <NavigationContainer>
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Home} options={optionsHeader} />
+      <Stack.Screen name="LaunchScreen" component={LaunchScreen} options={optionsHeader} />
       <Stack.Screen name="Login" component={Login} options={optionsHeader} />
       <Stack.Screen name="PasswordRecovery" component={PasswordRecovery} options={optionsHeader} />
       <Stack.Screen name="PagesWithTab" component={PagesWithTab} />
