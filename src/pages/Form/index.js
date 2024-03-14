@@ -1,6 +1,8 @@
 import { useState, useReducer } from 'react';
-import { Box } from 'native-base';
+import { VStack } from 'native-base';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+// Components
 import InformacoesCandidato from './components/InformacoesCandidato';
 import PrimeiraQuestao from './components/PrimeiraQuestao';
 import SegundaQuestão from './components/SegundaQuestão';
@@ -55,8 +57,11 @@ const Form = () => {
   };
 
   return (
-    <Box flex={1}>
-      <Box flex={1} alignItems="center">
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1, backgroundColor: 'white' }}
+      scrollEnabled={false}
+    >
+      <VStack flex="1" p="5" pb="20" safeArea>
         {state.numeroForm === 0 && (
           <InformacoesCandidato
             handleRepostas={handleRepostas}
@@ -99,8 +104,8 @@ const Form = () => {
             respostas={respostas}
           />
         )}
-      </Box>
-    </Box>
+      </VStack>
+    </KeyboardAwareScrollView>
   );
 };
 
