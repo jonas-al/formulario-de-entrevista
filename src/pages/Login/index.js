@@ -30,15 +30,7 @@ const Login = ({ navigation }) => {
   return (
     <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <VStack flex="1" bgColor="#AD550B" pt="20">
-        <VStack
-          flex={1}
-          paddingX="4"
-          bgColor="white"
-          borderTopRadius="56"
-          pt="10"
-          mt="6"
-          contentContainerStyle={{ flexGrow: 1 }}
-        >
+        <VStack flex={1} px="4" bgColor="white" borderTopRadius="56" pt="10" mt="6">
           <Heading size="xl" color="#393939" mb="6">
             Entrar
           </Heading>
