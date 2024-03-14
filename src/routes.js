@@ -32,14 +32,15 @@ const PagesWithTab = () => (
   <Tab.Navigator
     initialRouteName="Home"
     screenOptions={{
+      tabBarHideOnKeyboard: true,
       tabBarShowLabel: false,
       tabBarActiveTintColor: '#FFFFFF',
-      tabBarInactiveTintColor: '#FFFFFF',
       tabBarStyle: {
+        position: 'absolute',
         backgroundColor: '#AD550B',
         borderTopStartRadius: 24,
         borderTopEndRadius: 24,
-        height: 96,
+        height: 80,
       },
     }}
   >
